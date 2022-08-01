@@ -9,3 +9,5 @@ this the project where we going to use api provided by the google making search 
 3. google api
 4. tailwind css
 5. context api
+6. hooks
+
