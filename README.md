@@ -2,7 +2,7 @@
 
 this the project where we going to use api provided by the google making search engine .
 
-##what we going to use
+##what we used
 
 1. react js
 2. routers
