@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function MainCart({ gittitle, link, description }) {
+export default function MainCart({ title, link, description }) {
     
   return (
     <div className="Main_cart">
