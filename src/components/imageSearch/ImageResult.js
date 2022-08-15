@@ -1,13 +1,14 @@
-
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import NoteContext from "../../Context/ContextFile";
 import ImageCart from "./ImageCart";
 
 export default function ImageResult() {
+  const ContextHandler = useContext(NoteContext);
   const [ImageData, setImageData] = useState("");
   const options = {
     method: "GET",
-    url: "https://google-search3.p.rapidapi.com/api/v1/image/q=tesla",
+    url: "https://google-search3.p.rapidapi.com/api/v1/image/q=south+movie",
     headers: {
       "X-User-Agent": "desktop",
       "X-Proxy-Location": "EU",
@@ -18,7 +19,13 @@ export default function ImageResult() {
   async function getUser() {
     try {
       const { data } = await axios.request(options);
-      console.log("first data log", data.image_results);
+      console.log(data);
+      console.log("image log", ContextHandler.searchResultsAndTime);
+      ContextHandler.setSearchResultsAndTime((prev) => ({
+        ...prev,
+        time: data.ts,
+        About: data.total,
+      }));
       setImageData(data.image_results);
     } catch (error) {
       console.error(error);
@@ -27,19 +34,14 @@ export default function ImageResult() {
 
   useEffect(() => {
     getUser();
-    return () => {
-    };
+    return () => {};
   }, []);
   return (
     <div className="Image_cart">
       {ImageData &&
         ImageData.map((val, idx) => {
           return (
-            <ImageCart
-              key={idx}
-              src={val.image.src}
-              alt={val.image.alt}
-            />
+            <ImageCart key={idx} src={val.image.src} alt={val.image.alt} />
           );
         })}
     </div>

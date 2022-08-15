@@ -1,5 +1,6 @@
 import React from "react";
-export default function MainCart({ title, link, description }) {
+
+export default function NewsCarts({ title, link, publishedDate }) {
   return (
     <div className="Main_cart">
       <div>
@@ -13,7 +14,7 @@ export default function MainCart({ title, link, description }) {
         </h3>
       </div>
       <div>
-        <p>{description}</p>
+        <p>{publishedDate}</p>
       </div>
     </div>
   );
