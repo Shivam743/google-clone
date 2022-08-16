@@ -5,6 +5,8 @@ import NoteContext from "../../Context/ContextFile";
 import NewsCarts from "./NewsCarts";
 
 export default function NewsResults() {
+  const [isLoading,setIsLoading]=useState(false);
+
   const { setSearchResultsAndTime,SearchText } = useContext(NoteContext);
   const [Data, setData] = useState();
   const options = {
@@ -18,11 +20,15 @@ export default function NewsResults() {
     }
   };
   async function getNew() {
+    
     try {
+      setIsLoading(true)
       const { data } = await axios.request(options);
       setSearchResultsAndTime((prev) => ({ ...prev, time: data.ts }));
       setData(data.entries);
+      setIsLoading(false)
     } catch (error) {
+      setIsLoading(false)
       console.log(error);
     }
   }
@@ -32,13 +38,15 @@ export default function NewsResults() {
 
   return (
     <div>
+        {isLoading && <div className="fallback">Loading...</div>}
+
       <div>
-        {Data &&
+        {!isLoading && Data &&
           Data.map((val, idx) => {
             return <NewsCarts key={idx} title={val.title} publishedDate={val.published} link={val.link}/>;
           })}
       </div>
-      {SearchText?"":<div className="Search_not_found"><h2>Search AnyThink</h2></div>}
+      {SearchText || isLoading?"":<div className="Search_not_found"><h2>Search AnyThink</h2></div>}
     </div>
   );
 }
