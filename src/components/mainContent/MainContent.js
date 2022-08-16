@@ -1,23 +1,23 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import NoteContext from "../Context/ContextFile";
+import NoteContext from "../../Context/ContextFile";
 import MainCart from "./MainCart";
 
 export default function MainContent() {
-  const {  setSearchResultsAndTime } = useContext(
+  const {  setSearchResultsAndTime,SearchText } = useContext(
     NoteContext
   );
 
   const [Data, setData] = useState("");
   const options = {
-    method: "GET",
-    url: "https://google-search3.p.rapidapi.com/api/v1/search/q=elon+musk",
+    method: 'GET',
+    url: `https://google-search3.p.rapidapi.com/api/v1/search/q=${SearchText}`,
     headers: {
-      "X-User-Agent": "desktop",
-      "X-Proxy-Location": "IN",
-      "X-RapidAPI-Key": "a90d78fd2fmsh639eb5e5b616e16p14632fjsnf8008114e803",
-      "X-RapidAPI-Host": "google-search3.p.rapidapi.com",
-    },
+      'X-User-Agent': 'desktop',
+      'X-Proxy-Location': 'EU',
+      'X-RapidAPI-Key': '4c3475fb3bmsh253331f3d63e9dap1534dfjsn78196ec5add6',
+      'X-RapidAPI-Host': 'google-search3.p.rapidapi.com'
+    }
   };
 
   async function getUser() {
@@ -28,7 +28,6 @@ export default function MainContent() {
         About: data.total,
         time: data.ts,
       }));
-      console.log("first data log", data);
       setData(data);
     } catch (error) {
       console.error(error);
@@ -38,8 +37,9 @@ export default function MainContent() {
   useEffect(() => {
     getUser();
 
+
     return () => {};
-  }, []);
+  }, [SearchText]);
 
   return (
     <div>
@@ -55,6 +55,7 @@ export default function MainContent() {
             />
           );
         })}
+        {SearchText?"":<div className="Search_not_found"><h2>Search AnyThink</h2></div>}
     </div>
   );
 }

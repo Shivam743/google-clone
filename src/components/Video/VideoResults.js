@@ -1,17 +1,17 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import NoteContext from "../../Context/ContextFile";
-import MainCart from "../MainCart";
+import MainCart from "../mainContent/MainCart";
 
 export default function VideoResults() {
-  const { searchResultsAndTime, setSearchResultsAndTime } = useContext(
+  const {  setSearchResultsAndTime,SearchText } = useContext(
     NoteContext
   );
 
   const [Data, setData] = useState("");
   const options = {
     method: 'GET',
-    url: 'https://google-search3.p.rapidapi.com/api/v1/video/q=iphone+reviews',
+    url: `https://google-search3.p.rapidapi.com/api/v1/video/q=${SearchText}`,
     headers: {
       'X-User-Agent': 'desktop',
       'X-Proxy-Location': 'EU',
@@ -29,19 +29,17 @@ export default function VideoResults() {
         About: data.total,
         time: data.ts,
       }));
-      console.log("first data log", data);
-      console.log("all page log", searchResultsAndTime);
+     
       setData(data);
     } catch (error) {
       console.error(error);
     }
   }
-
   useEffect(() => {
     getUser();
 
     return () => {};
-  }, []);
+  }, [SearchText]);
 
   return (
     <div>
@@ -57,6 +55,7 @@ export default function VideoResults() {
             />
           );
         })}
+        {SearchText?"":<div className="Search_not_found"><h2>Search AnyThink</h2></div>}
     </div>
   );
 }

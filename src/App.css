@@ -5,7 +5,6 @@
   width: 100%;
   justify-content: space-between;
   padding: 5px 30px;
-  /* border: 1px solid red; */
 }
 .logo{  
   flex-grow: 3;
@@ -30,18 +29,17 @@
 .text input{
   width: 100%;
   height: 100%;
-  border-radius: 1em;
+  border-radius: .5em;
 }
  .search_icon{
   flex-grow: 2;
-  margin-left: 0.1em;
+  margin-left: 0.8em;
 }
 .menubar {
   width: 100vw;
   height: 2rem;
   display: flex;
   justify-content: space-evenly;
-  /* border: 1px solid green; */
   text-transform: capitalize;
   font-weight: bolder;
   margin-top: 0.4em;
@@ -62,13 +60,11 @@ a.active{
 .Main_cart{
   display: flex;
   margin: 7px 4vw;
-  /* border: 4px solid red; */
   flex-direction: column;
   overflow: auto;
   text-overflow: ellipsis;
 }
 .Main_cart >div{
-  /* border: 2px solid black; */
   margin: 2px 1px;
   overflow: auto;
   text-overflow: ellipsis;
@@ -116,6 +112,35 @@ h3> a{
     font-size: 20px;
     font-weight: 400;
     line-height: 1.3;
-    border: 1px solid red;
 }
 
+
+.Search_not_found{    
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 28em;
+  background-image: url(https://images.saymedia-content.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:eco%2Cw_1200/MTc2NDYwNTM3OTI2OTIwMTU0/how-to-do-a-background-search-on-people.jpg);
+ background-size: contain;
+ background-repeat: no-repeat;
+ background-position: center;
+ color: #26292c;
+ text-shadow: 3px 0px 2px #000;}
+
+.No_route_page_css{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 29em;
+}
+
+.fallback{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 25em;
+}
